@@ -44,14 +44,7 @@ const BillingDetails = () => {
           setTambons(result);
         });
     })();
-  }, []);
-  
-  useEffect(() => {
-    if(provinceId && amphureId && tambonId){
-        console.log(provinceId + "" + amphureId + "" + tambonId)
-    }
-    console.log(provinceId);    
-  },[provinceId])
+  }, []); 
     
   return (
     <>
@@ -62,16 +55,16 @@ const BillingDetails = () => {
                     <div className='flex justify-start gap-12'>
                         <div>
                             <label htmlFor="">First Name</label> <br />
-                            <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] mt-4 h-16' size={26} />
+                            <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={25} />
                         </div>
                         <div>
                             <label htmlFor="">Last Name</label> <br />
-                            <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] mt-4 h-16' size={26} />
+                            <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={25} />
                         </div>                                        
                     </div>
                     <div>
                         <label htmlFor="">Company Name (Optional)</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] mt-4 h-16' size={65} />                        
+                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
                     </div>
                     <div>
                         <label htmlFor="">Country</label> <br />
@@ -106,7 +99,9 @@ const BillingDetails = () => {
                         <select onChange={(e) => setAmphureID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
                             <option label='Choose District'></option>
                             {
-                                amphures.map((item) => {                                                                         
+                                amphures.filter((item) => {
+                                    return item.province_id == provinceId ? provinceId : '';
+                                }).map((item) => {                                                                         
                                     return(
                                         <option
                                             key={item.id}
@@ -123,7 +118,9 @@ const BillingDetails = () => {
                         <select onChange={(e) => setTambolID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
                             <option label='Choose Sub-District'>Choose Sub-District</option>
                             {
-                                tambons.map((item) => {
+                                tambons.filter((item) => {
+                                    return item.amphure_id == amphureId ? amphureId : '';
+                                }).map((item) => {
                                     return(
                                         <option
                                             key={item.id}
@@ -137,15 +134,15 @@ const BillingDetails = () => {
                     </div>
                     <div>
                         <label htmlFor="">ZIP code</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] mt-4 h-16' size={65} />                        
+                        <input type="text" value={amphures.filter((item) => {return item.amphure_id == amphureId ? 0 : item.zip_code })} className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
                     </div>
                     <div>
                         <label htmlFor="">Phone</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] mt-4 h-16' size={65} />                        
+                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
                     </div>
                     <div>
                         <label htmlFor="">Email address</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] mt-4 h-16' size={65} />                        
+                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
                     </div>
                     <div>                        
                         <input type="text" placeholder='Additional Information' className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={63} />                        
