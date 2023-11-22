@@ -13,15 +13,15 @@ const BrowTheRange = () => {
             </div>
             <div className='flex justify-center gap-8 text-center mt-16'>
               <div>
-                <img src={dining} alt="Dining" className='w-[380px] h-[480px] rounded-xl object-cover' />
+                <img src={dining} alt="Dining" className='w-[380px] h-[480px] rounded-xl object-cover hover:scale-105' />
                 <h3 className='text-xl mt-4 font-bold'>Dining</h3>
               </div>
               <div>
-                <img src={living} alt="Living" className='w-[380px] h-[480px] rounded-xl object-cover' />
+                <img src={living} alt="Living" className='w-[380px] h-[480px] rounded-xl object-cover hover:scale-105' />
                 <h3 className='text-xl mt-4 font-bold'>Living</h3>
               </div>
               <div>
-                <img src={bedroom} alt="Bedroom" className='w-[380px] h-[480px] rounded-xl object-cover' />
+                <img src={bedroom} alt="Bedroom" className='w-[380px] h-[480px] rounded-xl object-cover hover:scale-105' />
                 <h3 className='text-xl mt-4 font-bold'>Bedroom</h3>
               </div>
             </div>                     

@@ -19,9 +19,9 @@ const Inspirations = () => {
                     <button className='text-center text-white font-bold border-none bg-primary py-2 px-6 max-w-[150px]'>Explore More</button>
                 </div>
                 <div className='flex gap-4'>
-                    <img src={ins1} alt="/" className=' w-[370px] h-[570px]'/>
-                    <img src={ins2} alt="/" className=' w-[370px] h-[470px]'/>
-                    <img src={ins3} alt="/" className=' w-[370px] h-[470px]'/>
+                    <img src={ins1} alt="/" className=' w-[370px] h-[570px] hover:scale-105'/>
+                    <img src={ins2} alt="/" className=' w-[370px] h-[470px] hover:scale-105'/>
+                    <img src={ins3} alt="/" className=' w-[370px] h-[470px] hover:scale-105'/>
                 </div>
             </div>
             <div className='absolute bottom-[15%] right-[47%] flex'>

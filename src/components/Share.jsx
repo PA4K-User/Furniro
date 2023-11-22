@@ -19,31 +19,31 @@ const Share = () => {
         </div>
         <div className='grid grid-cols-6 gap-4 mt-10'>
           <div className=''>
-            <img src={share1} alt="/" className='h-full object-cover'/>
+            <img src={share1} alt="/" className='h-full object-cover hover:scale-105'/>
           </div>
           <div className='h-[70%] translate-y-[43%] col-span-2'>
-            <img src={share2} alt="/"className='h-full object-cover'/>
+            <img src={share2} alt="/"className='h-full object-cover hover:scale-105'/>
           </div>
           <div className='h-[70%] translate-y-[30%] row-span-2'>
-            <img src={share3} alt="/" className='h-full object-contain'/>
+            <img src={share3} alt="/" className='h-full object-contain hover:scale-105'/>
           </div>
           <div className='h-[70%] translate-y-[60%]'>
-            <img src={share4} alt="/" className='h-full object-cover'/>
+            <img src={share4} alt="/" className='h-full object-cover hover:scale-105'/>
           </div>
           <div className='translate-y-[12%]'>
-            <img src={share5} alt="/" className='h-full object-cover'/>
+            <img src={share5} alt="/" className='h-full object-cover hover:scale-105'/>
           </div>
           <div className='translate-x-[40%]'>
-            <img src={share6} alt="/" className='h-full object-contain'/>
+            <img src={share6} alt="/" className='h-full object-contain hover:scale-105'/>
           </div>
           <div className='w-[80%] translate-x-[25%] -translate-y-[14%] col-span-2'>
-            <img src={share7} alt="/" className='h-full object-contain'/>
+            <img src={share7} alt="/" className='h-full object-contain hover:scale-105'/>
           </div>
           <div className=' translate-y-[13%]'>
-            <img src={share8} alt="/" className='h-full object-cover'/>
+            <img src={share8} alt="/" className='h-full object-cover hover:scale-105'/>
           </div>
           <div className='w-full h-[70%] translate-y-[19%]'>
-            <img src={share9} alt="/" className='h-full object-cover'/>
+            <img src={share9} alt="/" className='h-full object-cover hover:scale-105'/>
           </div>                      
         </div>
         <hr className='mt-[200px]'/>

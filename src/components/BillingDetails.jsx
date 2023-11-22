@@ -6,9 +6,13 @@ const BillingDetails = () => {
   const [amphures, setAmphures] = useState([]);
   const [tambons, setTambons] = useState([]);
 
+  const [country, setCountry] = useState('');
   const [provinceId, setProvinceID] = useState(0);
   const [amphureId, setAmphureID] = useState(0);
-  const [tambonId, setTambolID] = useState(0);  
+  const [tambonId, setTambonID] = useState(0);  
+  
+  
+  console.log(tambons);
 
   useEffect(() => {
     (() => {
@@ -68,7 +72,7 @@ const BillingDetails = () => {
                     </div>
                     <div>
                         <label htmlFor="">Country</label> <br />
-                        <select className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]' >
+                        <select onChange={(e) => setCountry(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]' >
                             <option label='Choose Country'></option>
                             <option value="US">United States</option>
                             <option value="TH">Thailand</option>
@@ -81,7 +85,9 @@ const BillingDetails = () => {
                         <select onChange={(e) => setProvinceID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
                             <option label='Choose Province'></option>
                             {
-                                provinces.map((item)=> {
+                                provinces.filter((item) => {
+                                    return  country == "TH" ? item : '';
+                                }).map((item)=> {
                                     return (
                                         <option
                                             key={item.id}
@@ -115,7 +121,7 @@ const BillingDetails = () => {
                     </div>
                     <div>
                         <label htmlFor="">Sub-District</label> <br />
-                        <select onChange={(e) => setTambolID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
+                        <select onChange={(e) => setTambonID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
                             <option label='Choose Sub-District'>Choose Sub-District</option>
                             {
                                 tambons.filter((item) => {
@@ -134,7 +140,7 @@ const BillingDetails = () => {
                     </div>
                     <div>
                         <label htmlFor="">ZIP code</label> <br />
-                        <input type="text" value={amphures.filter((item) => {return item.amphure_id == amphureId ? 0 : item.zip_code })} className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
+                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
                     </div>
                     <div>
                         <label htmlFor="">Phone</label> <br />
