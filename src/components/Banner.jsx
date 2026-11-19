@@ -1,20 +1,25 @@
-import React from 'react'
 import interiorBg from '../assets/banner/interiorBg.png'
 
 const Banner = () => {
   return (
-    <>
-        <div className='relative'>
-            <img src={interiorBg} alt="interiorBg" className='w-full h-screen object-cover'/>
-            <div className='absolute top-[20%] right-[10%] w-[600px] h-[300px] xl:w-[1200px] xl:h-[600px] bg-[#FFF2E3] p-10 font-popins flex flex-col gap-8 rounded-xl'>
-                <p className='text-3xl font-semibold'>New Arrival</p>
-                <h1 className='text-8xl text-primary font-bold'>Discover Our</h1>
-                <h1 className='text-8xl text-primary font-bold'>New Collection</h1>
-                <p className='text-2xl'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br/> Aliquid, numquam.</p>
-                <button className='bg-primary text-center text-2xl text-white font-bold max-w-[300px] h-[100px]'>BUY NOW</button>
-            </div>
-        </div>
-    </>
+    <section className='relative'>
+      <img
+        src={interiorBg}
+        alt='Interior living room'
+        className='h-[60vh] min-h-[380px] w-full object-cover lg:h-[88vh]'
+      />
+      {/* Card overlaps the photo on phones/tablets, floats on the right on desktop */}
+      <div className='relative -mt-16 mx-5 sm:mx-8 bg-ivory p-8 sm:p-12 lg:absolute lg:right-12 lg:top-1/2 lg:mx-0 lg:mt-0 lg:w-[520px] lg:-translate-y-1/2 xl:right-24'>
+        <p className='eyebrow'>New Arrival</p>
+        <h1 className='mt-4 text-4xl sm:text-5xl lg:text-6xl leading-[1.05]'>
+          Discover Our <br /> New Collection
+        </h1>
+        <p className='mt-6 max-w-md text-sm sm:text-base leading-relaxed text-muted'>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid, numquam.
+        </p>
+        <button className='btn-primary mt-8'>Buy Now</button>
+      </div>
+    </section>
   )
 }
 

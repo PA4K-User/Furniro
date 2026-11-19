@@ -1,7 +1,4 @@
-import React from 'react'
 
-import redCircle from '../assets/OurProducts/RedCircle.svg'
-import greenCircle from '../assets/OurProducts/GreenCircle.svg'
 import syltherine from '../assets/OurProducts/Syltherine.png'
 import leviosa from '../assets/OurProducts/Leviosa.png'
 import lolito from '../assets/OurProducts/Lolito.png'
@@ -10,236 +7,68 @@ import grifo from '../assets/OurProducts/Grifo.png'
 import muggo from '../assets/OurProducts/Muggo.png'
 import pingky from '../assets/OurProducts/Pingky.png'
 import potty from '../assets/OurProducts/Potty.png'
-import share from '../assets/OurProducts/ShareOverlay.svg'
-import compare from '../assets/OurProducts/CompareOverlay.svg'
-import like from '../assets/OurProducts/HeartOverlay.svg'
+
+const products = [
+  { name: 'Syltherine', desc: 'Stylish cafe chair', price: 'Rp 2.500.000', oldPrice: 'Rp 3.500.000', badge: '-30%', img: syltherine },
+  { name: 'Leviosa', desc: 'Stylish cafe chair', price: 'Rp 2.500.000', img: leviosa },
+  { name: 'Lolito', desc: 'Luxury big sofa', price: 'Rp 7.000.000', oldPrice: 'Rp 14.000.000', badge: '-30%', img: lolito },
+  { name: 'Respira', desc: 'Outdoor bar table and stool', price: 'Rp 500.000', badge: 'New', img: respira },
+  { name: 'Grifo', desc: 'Night lamp', price: 'Rp 1.500.000', badge: '-30%', img: grifo },
+  { name: 'Muggo', desc: 'Small mug', price: 'Rp 150.000', oldPrice: 'Rp 3.500.000', badge: 'New', img: muggo },
+  { name: 'Pingky', desc: 'Cute bed set', price: 'Rp 7.000.000', oldPrice: 'Rp 14.000.000', badge: '-30%', img: pingky },
+  { name: 'Potty', desc: 'Minimalist flower pot', price: 'Rp 500.000', badge: 'New', img: potty },
+]
+
+const ProductCard = ({ product }) => (
+  <article className='group'>
+    <div className='relative aspect-[3/4] overflow-hidden bg-stone'>
+      <img
+        src={product.img}
+        alt={product.name}
+        className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
+      />
+      {product.badge && (
+        <span className='absolute left-3 top-3 bg-ivory px-3 py-1 text-[10px] font-medium uppercase tracking-widest'>
+          {product.badge}
+        </span>
+      )}
+      {/* Always visible on touch screens, revealed on hover for desktop */}
+      <div className='absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-ivory/95 p-3 transition-all duration-300 lg:translate-y-full lg:group-hover:translate-y-0'>
+        <button className='btn-primary w-full py-2.5!'>Add to cart</button>
+        <div className='flex justify-between text-[11px] uppercase tracking-widest text-muted'>
+          <button className='hover:text-ink'>Share</button>
+          <button className='hover:text-ink'>Compare</button>
+          <button className='hover:text-ink'>Like</button>
+        </div>
+      </div>
+    </div>
+    <div className='mt-4'>
+      <h3 className='font-serif text-xl'>{product.name}</h3>
+      <p className='mt-1 text-sm text-muted'>{product.desc}</p>
+      <p className='mt-2 text-sm font-medium'>
+        {product.price}
+        {product.oldPrice && <span className='ml-2 font-light text-muted line-through'>{product.oldPrice}</span>}
+      </p>
+    </div>
+  </article>
+)
 
 const OurProducts = () => {
   return (
-    <>
-        <div className='max-w-[1690px] mx-auto text-gray-400'>
-            <h1 className='text-center text-4xl text-black font-bold mb-10'>Our Products</h1>
-            <div className='grid grid-cols-4 gap-8'>
-                <div className='relative' >
-                    <img src={syltherine} alt="/"/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Syltherine</h3>
-                        <p>Stylish cafe chair</p>
-                        <p className='text-black font-bold'>Rp 2.500.000 <span className='text-gray-400 line-through'>Rp 3.500.000</span></p>
-                     </div>
-                     <img src={redCircle} alt="/" className='absolute top-4 right-4' />
-                     <p className='absolute top-7 right-5 text-white'>-30%</p>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>                                          
-                </div>
-                <div className='relative'>
-                    <img src={leviosa} alt="/"/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Leviosa</h3>
-                        <p>Stylish cafe chair</p>
-                        <p className='text-black font-bold'>Rp 2.500.000</p>
-                     </div>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>                                         
-                </div>
-                <div className='relative'>
-                    <img src={lolito} alt="/" className='h-[600px]'/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Lolito</h3>
-                        <p>Luxury big sofa</p>
-                        <p className='text-black font-bold'>Rp 7.000.000 <span className='text-gray-400 line-through'>Rp 14.000.000</span></p>
-                     </div>
-                     <img src={redCircle} alt="/" className='absolute top-4 right-4' />
-                     <p className='absolute top-7 right-5 text-white'>-30%</p>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div className='relative'>
-                    <img src={respira} alt="/" className='h-[600px]'/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Respira</h3>
-                        <p>Outdoor bar table and stool</p>
-                        <p className='text-black font-bold'>Rp 500.000 </p>
-                     </div>
-                     <img src={greenCircle} alt="/" className='absolute top-4 right-4' />
-                     <p className='absolute top-7 right-5 text-white'>New</p>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div className='relative'>
-                    <img src={grifo} alt="/" className='h-[600px]'/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Grifo</h3>
-                        <p>Night lamp</p>
-                        <p className='text-black font-bold'>Rp 1.500.000</p>
-                     </div>
-                     <img src={redCircle} alt="/" className='absolute top-4 right-4' />
-                     <p className='absolute top-7 right-5 text-white'>-30%</p>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div className='relative'>
-                    <img src={muggo} alt="/" className='h-[600px]'/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Muggo</h3>
-                        <p>Small mug</p>
-                        <p className='text-black font-bold'>Rp 150.000 <span className='text-gray-400 line-through'>Rp 3.500.000</span></p>
-                     </div>
-                     <img src={greenCircle} alt="/" className='absolute top-4 right-4' />
-                     <p className='absolute top-7 right-5 text-white'>New</p>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div className='relative'>
-                    <img src={pingky} alt="/" className='h-[600px]'/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Pingky</h3>
-                        <p>Cute bed set</p>
-                        <p className='text-black font-bold'>Rp 7.000.000 <span className='text-gray-400 line-through'>Rp 14.000.000</span></p>
-                     </div>
-                     <img src={redCircle} alt="/" className='absolute top-4 right-4' />
-                     <p className='absolute top-7 right-5 text-white'>-30%</p>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div className='relative'>
-                    <img src={potty} alt="/" className='h-[600px]'/>
-                     <div className=' bg-gray-200 p-4'>
-                        <h3 className='text-black text-xl font-bold'>Potty</h3>
-                        <p>Minimalist flower pot</p>
-                        <p className='text-black font-bold'>Rp 500.000</p>
-                     </div>
-                     <img src={greenCircle} alt="/" className='absolute top-4 right-4' />
-                     <p className='absolute top-7 right-5 text-white'>New</p>
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/60 opacity-0 hover:opacity-100 text-white flex flex-col justify-center items-center gap-8'>
-                            <button className=' text-primary text-xl font-bold bg-white px-14 py-3'>Add to cart</button>
-                            <div className='w-full flex justify-between px-14'>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={share} alt="/" />
-                                    <h3>Share</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={compare} alt="/" />
-                                    <h3>Compare</h3>
-                                </div>
-                                <div className='flex font-bold gap-1'>
-                                    <img src={like} alt="/" />
-                                    <h3>Like</h3>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
-            <div className='flex justify-center'>
-                <button className='rounded-none border border-primary text-primary text-center font-bold py-3 px-28 mt-10 mb-10'>Show More</button>
-            </div>
-        </div>
-    </>
+    <section className='container-x pb-16 sm:pb-20 lg:pb-28'>
+      <div className='text-center'>
+        <p className='eyebrow'>Shop</p>
+        <h2 className='section-title mt-3'>Our Products</h2>
+      </div>
+      <div className='mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-14'>
+        {products.map((p) => (
+          <ProductCard key={p.name} product={p} />
+        ))}
+      </div>
+      <div className='mt-14 flex justify-center'>
+        <button className='btn-outline'>Show More</button>
+      </div>
+    </section>
   )
 }
 

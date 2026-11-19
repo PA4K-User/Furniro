@@ -1,46 +1,30 @@
-import React from 'react'
 import support from '../assets/Frame/customer-support.svg'
 import guarantee from '../assets/Frame/guarantee.svg'
 import shipping from '../assets/Frame/shipping.svg'
 import trophy from '../assets/Frame/trophy.svg'
 
+const features = [
+  { icon: trophy, title: 'High Quality', text: 'Crafted from top materials' },
+  { icon: guarantee, title: 'Warranty Protection', text: 'Over 2 years' },
+  { icon: shipping, title: 'Free Shipping', text: 'Order over 150 $' },
+  { icon: support, title: '24 / 7 Support', text: 'Dedicated support' },
+]
+
 const Frame = () => {
   return (
-    <>
-        <div className='w-full h-[270px] bg-[#FAF3EA] flex justify-center items-center'>
-            <div className='max-h-[70px] w-[80%] flex justify-between gap-4 px-10'>
-                <div className='flex gap-2'>
-                    <img src={trophy} alt="/" />
-                    <div>
-                        <h1 className='text-black text-2xl font-bold'>High Quality</h1>
-                        <p>crafted from top materials</p>
-                    </div>
-                    
-                </div>
-                <div className='flex gap-2'>
-                    <img src={guarantee} alt="/" />
-                    <div>
-                        <h1 className='text-black text-2xl font-bold'>High Quality</h1>
-                        <p>crafted from top materials</p>
-                    </div>
-                </div>
-                <div className='flex gap-2'>
-                    <img src={shipping} alt="/" />
-                    <div>
-                        <h1 className='text-black text-2xl font-bold'>High Quality</h1>
-                        <p>crafted from top materials</p>
-                    </div>
-                </div>
-                <div className='flex gap-2'>
-                    <img src={support} alt="/" />
-                    <div>
-                        <h1 className='text-black text-2xl font-bold'>High Quality</h1>
-                        <p>crafted from top materials</p>
-                    </div>
-                </div>
-            </div>            
-        </div>
-    </>
+    <section className='border-y border-line bg-stone'>
+      <div className='container-x grid grid-cols-1 gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:py-16'>
+        {features.map((f) => (
+          <div key={f.title} className='flex items-center gap-4'>
+            <img src={f.icon} alt='' className='h-9 w-9 shrink-0' />
+            <div>
+              <h3 className='font-serif text-xl'>{f.title}</h3>
+              <p className='text-sm text-muted'>{f.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
 

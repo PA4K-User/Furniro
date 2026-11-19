@@ -1,53 +1,55 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <>
-        <div className='max-w-[1960px] max-h-[500px] mx-auto mt-16'>         
-            <div className='grid grid-cols-3 gap-8'>
-                <div className='flex flex-col gap-8'>
-                    <h3 className='text-4xl font-bold'>Funiro.</h3>
-                    <p className='text-gray-400'>
-                        400 University Drive Suite 200 Coral <br />
-                        Gables,<br />
-                        FL 33134 USA 
-                    </p>
-                </div>
-                <div className=' col-span-2 flex justify-between'>
-                    <div>
-                        <ul className=' flex flex-col gap-8'>
-                            <li className='text-gray-400'>Links</li>
-                            <li className='font-bold'>Home</li>
-                            <li className='font-bold'>Shop</li>
-                            <li className='font-bold'>About</li>
-                            <li className='font-bold'>Contact</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul className=' flex flex-col gap-8'>
-                            <li className='text-gray-400'>Help</li>
-                            <li className='font-bold'>Payment Options</li>
-                            <li className='font-bold'>Returns</li>
-                            <li className='font-bold'>Privacy Policies</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul className=' flex flex-col gap-8'>
-                        <li className='text-gray-400'>Newsletter</li>
-                        <li>
-                            <input type="text" placeholder='Enter Your Email Address' className='underline underline-offset-2'/>
-                            <label htmlFor="" className='underline underline-offset-2 ml-4 font-bold'>SUBSCRIBE</label>
-                        </li>
-                        </ul>                        
-                    </div>
-                </div>
-            </div>                
-            <hr className='mt-10'/>
-            <div>
-                <p className=' p-10'>2023 furino.All rights reverved</p>
-            </div>
+    <footer className='bg-ivory'>
+      <div className='container-x grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.6fr] lg:py-20'>
+        <div>
+          <h3 className='font-serif text-3xl font-semibold'>Furniro</h3>
+          <p className='mt-5 max-w-[260px] text-sm leading-relaxed text-muted'>
+            400 University Drive Suite 200 Coral Gables, FL 33134 USA
+          </p>
         </div>
-    </>
+
+        <div>
+          <h4 className='text-xs uppercase tracking-luxe text-muted'>Links</h4>
+          <ul className='mt-5 flex flex-col gap-3 text-sm'>
+            <li><Link to='/' className='hover:text-primary'>Home</Link></li>
+            <li><Link to='/' className='hover:text-primary'>Shop</Link></li>
+            <li><Link to='/' className='hover:text-primary'>About</Link></li>
+            <li><Link to='/contact' className='hover:text-primary'>Contact</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className='text-xs uppercase tracking-luxe text-muted'>Help</h4>
+          <ul className='mt-5 flex flex-col gap-3 text-sm'>
+            <li>Payment Options</li>
+            <li>Returns</li>
+            <li>Privacy Policies</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className='text-xs uppercase tracking-luxe text-muted'>Newsletter</h4>
+          <form className='mt-5 flex border-b border-ink' onSubmit={(e) => e.preventDefault()}>
+            <input
+              type='email'
+              aria-label='Email address'
+              placeholder='Enter your email address'
+              className='min-w-0 flex-1 bg-transparent py-3 text-sm placeholder:text-muted/60 focus:outline-hidden'
+            />
+            <button type='submit' className='py-3 pl-4 text-xs font-medium uppercase tracking-luxe hover:text-primary'>
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className='border-t border-line'>
+        <p className='container-x py-6 text-xs text-muted'>© 2023 Furniro. All rights reserved.</p>
+      </div>
+    </footer>
   )
 }
 

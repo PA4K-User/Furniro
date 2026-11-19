@@ -1,195 +1,141 @@
-import React,{useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
+
+const DATA_URL = 'https://raw.githubusercontent.com/kongvut/thai-province-data/master'
 
 const BillingDetails = () => {
+  const [provinces, setProvinces] = useState([])
+  const [amphures, setAmphures] = useState([])
+  const [tambons, setTambons] = useState([])
 
-  const [provinces, setProvinces] = useState([]);
-  const [amphures, setAmphures] = useState([]);
-  const [tambons, setTambons] = useState([]);
-
-  const [country, setCountry] = useState('');
-  const [provinceId, setProvinceID] = useState(0);
-  const [amphureId, setAmphureID] = useState(0);
-  const [tambonId, setTambonID] = useState(0);  
-  
-  
-  console.log(tambons);
+  const [country, setCountry] = useState('')
+  const [provinceId, setProvinceID] = useState(0)
+  const [amphureId, setAmphureID] = useState(0)
+  const [, setTambonID] = useState(0)
 
   useEffect(() => {
-    (() => {
-      fetch(
-        "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json"
-      )
-        .then((response) => response.json())
-        .then((result) => {
-          setProvinces(result);
-        });
-    })();
-  }, []);
+    fetch(`${DATA_URL}/api_province.json`).then((r) => r.json()).then(setProvinces)
+    fetch(`${DATA_URL}/api_amphure.json`).then((r) => r.json()).then(setAmphures)
+    fetch(`${DATA_URL}/api_tambon.json`).then((r) => r.json()).then(setTambons)
+  }, [])
 
-  useEffect(() => {
-    (() => {
-      fetch(
-        "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json"
-      )
-        .then((response) => response.json())
-        .then((result) => {
-          setAmphures(result);
-        });
-    })();
-  }, []);
+  const label = (item) => `${item.name_th} - ${item.name_en}`
 
-  useEffect(() => {
-    (() => {
-      fetch(
-        "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json"
-      )
-        .then((response) => response.json())
-        .then((result) => {
-          setTambons(result);
-        });
-    })();
-  }, []); 
-    
   return (
-    <>
-        <div className='w-full max-w-[1960px] mx-auto h-auto mt-10'>
-            <h1 className='text-3xl font-bold mb-4'>Billing details</h1>            
-            <div className='grid xl:grid-cols-2'>
-                <div className='grid grid-cols gap-24 font-bold pb-16'>
-                    <div className='flex justify-start gap-12'>
-                        <div>
-                            <label htmlFor="">First Name</label> <br />
-                            <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={25} />
-                        </div>
-                        <div>
-                            <label htmlFor="">Last Name</label> <br />
-                            <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={25} />
-                        </div>                                        
-                    </div>
-                    <div>
-                        <label htmlFor="">Company Name (Optional)</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
-                    </div>
-                    <div>
-                        <label htmlFor="">Country</label> <br />
-                        <select onChange={(e) => setCountry(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]' >
-                            <option label='Choose Country'></option>
-                            <option value="US">United States</option>
-                            <option value="TH">Thailand</option>
-                            <option value="FR">France</option>
-                            <option value="DE">Germany</option>
-                        </select>                       
-                    </div>
-                    <div>
-                        <label htmlFor="">Province</label> <br />
-                        <select onChange={(e) => setProvinceID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
-                            <option label='Choose Province'></option>
-                            {
-                                provinces.filter((item) => {
-                                    return  country == "TH" ? item : '';
-                                }).map((item)=> {
-                                    return (
-                                        <option
-                                            key={item.id}
-                                            value={item.id}
-                                            label={`${item.name_th} - ${item.name_en}`}                                            
-                                        />
-                                    )
-                                })
-                                
-                            }
-                        </select>                                               
-                    </div>
-                    <div>
-                        <label htmlFor="">District</label> <br />
-                        <select onChange={(e) => setAmphureID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
-                            <option label='Choose District'></option>
-                            {
-                                amphures.filter((item) => {
-                                    return item.province_id == provinceId ? provinceId : '';
-                                }).map((item) => {                                                                         
-                                    return(
-                                        <option
-                                            key={item.id}
-                                            value={item.id}
-                                            label={`${item.name_th} - ${item.name_en}`}                                            
-                                        />
-                                    )                     
-                                })
-                            }
-                        </select>                                               
-                    </div>
-                    <div>
-                        <label htmlFor="">Sub-District</label> <br />
-                        <select onChange={(e) => setTambonID(e.target.value)} className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16 w-[54%]'>
-                            <option label='Choose Sub-District'>Choose Sub-District</option>
-                            {
-                                tambons.filter((item) => {
-                                    return item.amphure_id == amphureId ? amphureId : '';
-                                }).map((item) => {
-                                    return(
-                                        <option
-                                            key={item.id}
-                                            value={item.id}
-                                            label={`${item.name_th} - ${item.name_en}`}                                            
-                                        />
-                                    )
-                                })
-                            }
-                        </select>                                               
-                    </div>
-                    <div>
-                        <label htmlFor="">ZIP code</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
-                    </div>
-                    <div>
-                        <label htmlFor="">Phone</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
-                    </div>
-                    <div>
-                        <label htmlFor="">Email address</label> <br />
-                        <input type="text" className='bg-white rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={65} />                        
-                    </div>
-                    <div>                        
-                        <input type="text" placeholder='Additional Information' className='bg-white text-left text-gray-400 rounded-[10px] border border-[#9F9F9F] pl-4 mt-4 h-16' size={63} />                        
-                    </div>
-                </div>
-                <div className='w-[608px] h-[789px] mx-auto px-10 text-2xl'>
-                    <div className='flex justify-between '>
-                        <div className='flex flex-col gap-4'>
-                            <h2 className='font-bold text-4xl'>Product</h2>
-                            <p><span className='text-gray-400'>Asgaard sofa</span> x 1</p>
-                            <p>Subtotal</p>
-                            <p>total</p>
-                        </div>
-                        <div className='flex flex-col items-end gap-4'>
-                            <h2 className='font-bold text-4xl'>Subtotal</h2>
-                            <p>Rs. 250,000.00</p>
-                            <p>Rs. 250,000.00</p>
-                            <p className='text-primary font-bold text-4xl'>Rs. 250,000.00</p>
-                        </div>
-                    </div>
-                    <hr className='my-10'/>
-                    <div className='mb-10'>
-                        <ul className='text-gray-400 list-disc flex flex-col gap-4'>
-                            <li className='hover:text-black'>Direct Bank Transfer</li>
-                            <li className='hover:text-black'>Direct Bank Transfer</li>
-                            <li className='hover:text-black'>Cash On Delivery</li>
-                        </ul>
-                    </div>
-                    <p>Your personal data will be used to support your experience <br />
-                    throughout this website to manage access to your account, and <br />
-                    for other purposes described in out <span className='text-black font-bold'>privacy policy.</span>
-                    </p>
-                    <div className='flex justify-center mt-8'>
-                        <button className='text-center text-black border border-black px-14 py-2 rounded-xl'>Place order</button>
-                    </div>
-                </div>
+    <section className='container-x section-y'>
+      <div className='grid gap-12 lg:grid-cols-[3fr_2fr] lg:gap-20'>
+        {/* Billing form */}
+        <div>
+          <h2 className='text-3xl sm:text-4xl'>Billing details</h2>
+          <div className='mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2'>
+            <div>
+              <label htmlFor='first-name' className='field-label'>First Name</label>
+              <input id='first-name' type='text' className='field' />
             </div>
+            <div>
+              <label htmlFor='last-name' className='field-label'>Last Name</label>
+              <input id='last-name' type='text' className='field' />
+            </div>
+            <div className='sm:col-span-2'>
+              <label htmlFor='company' className='field-label'>Company Name (Optional)</label>
+              <input id='company' type='text' className='field' />
+            </div>
+            <div className='sm:col-span-2'>
+              <label htmlFor='country' className='field-label'>Country</label>
+              <select id='country' className='field' onChange={(e) => setCountry(e.target.value)}>
+                <option value=''>Choose Country</option>
+                <option value='US'>United States</option>
+                <option value='TH'>Thailand</option>
+                <option value='FR'>France</option>
+                <option value='DE'>Germany</option>
+              </select>
+            </div>
+            <div className='sm:col-span-2'>
+              <label htmlFor='province' className='field-label'>Province</label>
+              <select id='province' className='field' onChange={(e) => setProvinceID(e.target.value)}>
+                <option value=''>Choose Province</option>
+                {country === 'TH' &&
+                  provinces.map((item) => (
+                    <option key={item.id} value={item.id}>{label(item)}</option>
+                  ))}
+              </select>
+            </div>
+            <div className='sm:col-span-2'>
+              <label htmlFor='district' className='field-label'>District</label>
+              <select id='district' className='field' onChange={(e) => setAmphureID(e.target.value)}>
+                <option value=''>Choose District</option>
+                {amphures
+                  .filter((item) => item.province_id == provinceId)
+                  .map((item) => (
+                    <option key={item.id} value={item.id}>{label(item)}</option>
+                  ))}
+              </select>
+            </div>
+            <div className='sm:col-span-2'>
+              <label htmlFor='sub-district' className='field-label'>Sub-District</label>
+              <select id='sub-district' className='field' onChange={(e) => setTambonID(e.target.value)}>
+                <option value=''>Choose Sub-District</option>
+                {tambons
+                  .filter((item) => item.amphure_id == amphureId)
+                  .map((item) => (
+                    <option key={item.id} value={item.id}>{label(item)}</option>
+                  ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor='zip' className='field-label'>ZIP code</label>
+              <input id='zip' type='text' className='field' />
+            </div>
+            <div>
+              <label htmlFor='phone' className='field-label'>Phone</label>
+              <input id='phone' type='tel' className='field' />
+            </div>
+            <div className='sm:col-span-2'>
+              <label htmlFor='email' className='field-label'>Email address</label>
+              <input id='email' type='email' className='field' />
+            </div>
+            <div className='sm:col-span-2'>
+              <label htmlFor='additional' className='field-label'>Additional Information</label>
+              <input id='additional' type='text' className='field' />
+            </div>
+          </div>
         </div>
-    </>
+
+        {/* Order summary */}
+        <aside className='h-fit border border-line bg-stone p-6 sm:p-10 lg:sticky lg:top-28'>
+          <h2 className='text-3xl sm:text-4xl'>Your order</h2>
+          <dl className='mt-8 grid grid-cols-[1fr_auto] gap-y-4 text-sm'>
+            <dt className='text-xs uppercase tracking-widest text-muted'>Product</dt>
+            <dd className='text-right text-xs uppercase tracking-widest text-muted'>Subtotal</dd>
+            <dt><span className='text-muted'>Asgaard sofa</span> × 1</dt>
+            <dd className='text-right'>Rs. 250,000.00</dd>
+            <dt>Subtotal</dt>
+            <dd className='text-right'>Rs. 250,000.00</dd>
+            <dt className='border-t border-line pt-4 font-medium'>Total</dt>
+            <dd className='border-t border-line pt-4 text-right font-serif text-2xl font-semibold text-primary'>
+              Rs. 250,000.00
+            </dd>
+          </dl>
+
+          <fieldset className='mt-8 flex flex-col gap-3 border-t border-line pt-8 text-sm'>
+            <legend className='sr-only'>Payment method</legend>
+            {['Direct Bank Transfer', 'Direct Bank Transfer', 'Cash On Delivery'].map((method, i) => (
+              <label key={i} className='flex cursor-pointer items-center gap-3 text-muted hover:text-ink'>
+                <input type='radio' name='payment' defaultChecked={i === 0} className='accent-primary' />
+                {method}
+              </label>
+            ))}
+          </fieldset>
+
+          <p className='mt-8 text-xs leading-relaxed text-muted'>
+            Your personal data will be used to support your experience throughout this website, to manage
+            access to your account, and for other purposes described in our{' '}
+            <span className='font-medium text-ink'>privacy policy.</span>
+          </p>
+          <button className='btn-primary mt-8 w-full'>Place order</button>
+        </aside>
+      </div>
+    </section>
   )
 }
-
 
 export default BillingDetails

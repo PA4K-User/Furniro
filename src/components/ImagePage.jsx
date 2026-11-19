@@ -1,19 +1,20 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import bg from '../assets/Checkout/bg.png'
-import logo from '../assets/banner/LogoIcon.png'
 
-const ImagePage  = (props) => {
+const ImagePage = (props) => {
   return (
-    <>
-        <div className='relative w-full'>
-          <img src={bg} alt="" className=' blur-sm w-full h-[316px] object-cover' />
-          <div className='absolute top-[20%] right-[45%] text-center flex flex-col justify-center items-center gap-2'>
-            <img src={logo} alt="/" className='w-20 h-20 bg-center'/>
-            <h1 className='text-5xl font-bold'>{props.name}</h1>
-            <p className=' flex gap-2'><span>Home &gt;</span>{props.name}</p>
-          </div>                    
-        </div>
-    </>
+    <section className='relative isolate flex h-[200px] items-center justify-center overflow-hidden sm:h-[260px] lg:h-[300px]'>
+      <img src={bg} alt='' className='absolute inset-0 -z-10 h-full w-full scale-105 object-cover blur-xs' />
+      <div className='absolute inset-0 -z-10 bg-ivory/70' />
+      <div className='text-center'>
+        <h1 className='text-4xl sm:text-5xl lg:text-6xl'>{props.name}</h1>
+        <p className='mt-3 text-xs uppercase tracking-luxe text-muted'>
+          <Link to='/' className='hover:text-ink'>Home</Link>
+          <span className='mx-2'>/</span>
+          <span className='text-ink'>{props.name}</span>
+        </p>
+      </div>
+    </section>
   )
 }
 

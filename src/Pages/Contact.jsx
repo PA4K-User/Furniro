@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from '../components/Navbar'
 import ImagePage from '../components/ImagePage'
 import GetInTouch from '../components/GetInTouch'
